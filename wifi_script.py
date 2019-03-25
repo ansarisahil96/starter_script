@@ -23,6 +23,9 @@ def set_wifi(interface, identifier):
     subprocess.call(["ip", "link", "set", interface, "down"])
     subprocess.call(["lspci", "-k"])
     subprocess.call(["rfkill", "unblock", identifier])
+    subprocess.call(["dhcpcd", "-k"])
+    subprocess.call(["killall", "dhcpcd"])
+    subprocess.call(["dhcpcd", "-d"])
     subprocess.call(["wifi-menu"])
 
 
